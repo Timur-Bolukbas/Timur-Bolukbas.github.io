@@ -1,5 +1,5 @@
 body {
-  background: rgb(125, 198, 205);
+  background: rgb(110, 110, 110);
   color: rgb(45, 45, 45);
   padding: 10px;
   font-family: arial;
@@ -16,11 +16,12 @@ nav {
   margin-bottom: 20px;
   display: flex;
   padding: 10px;
+  border-radius: 10px;
 }
 h1 {
   display: flex;
   align-items: center;
-  color: rgb(139, 139, 139);
+  color: rgb(190, 33, 33);
   flex: 1;
   margin: 0;
 }
@@ -38,8 +39,9 @@ a {
 
 /* main container area beneath menu */
 main {
-  background: rgb(153, 153, 153);
+  background: rgb(51, 63, 170);
   display: flex;
+  border-radius: 10px;
 }
 .sidebar {
   margin-right: 25px;
