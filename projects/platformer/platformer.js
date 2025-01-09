@@ -42,7 +42,15 @@ $(function () {
     createPlatform(400, 659, 200, 15);
     createPlatform(600, 550, 100, 15);
     createPlatform(420, 450, 100, 15);
-    
+    createPlatform(250, 350, 50, 15);
+    createPlatform(150, 250, 90, 15);
+    createPlatform(150, 0, 15, 250);
+    createPlatform(350, 150, 90, 15);
+    createPlatform(600, 250, 90, 15);
+    createPlatform(900, 200, 350, 15);
+    createPlatform(950, 150, 10, 60); //obstacle
+    createPlatform(1100, 100, 10, 100);
+
     // TODO 2
     // Create collectables
     // You must decide on the collectable type, the x position, the y position, the gravity, and the bounce strength
@@ -50,7 +58,7 @@ $(function () {
     // example usage: createCollectable(type, x, y, gravity, bounce)
 
     createCollectable("database", 400, 300, 20, 1);
-
+    createCollectable("diamond", 500, 500, 20, 1);
     
     // TODO 3
     // Create cannons
@@ -59,7 +67,7 @@ $(function () {
     // example usage: createCannon(side, position, delay, width, height)
 
     createCannon("left", 450, 890, 50, 50);
-
+    createCannon("top", 390, 1000, 20, 20);
     
     /////////////////////////////////////////////////
     //////////ONLY CHANGE ABOVE THIS POINT///////////
