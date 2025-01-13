@@ -50,7 +50,7 @@ $(function () {
     createPlatform(900, 200, 350, 15);
     createPlatform(950, 150, 10, 60); //obstacle
     createPlatform(1100, 100, 10, 100);
-
+    createPlatform(1300, 400, 80, 15);
     // TODO 2
     // Create collectables
     // You must decide on the collectable type, the x position, the y position, the gravity, and the bounce strength
@@ -59,7 +59,9 @@ $(function () {
 
     createCollectable("i", 600, 300);
     createCollectable("M4", 500, 500);
-    
+    createCollectable("M8", 1320, 360, 0);
+    createCollectable("M340i", 900, 30);
+    createCollectable("M6", 400, 30, 2);
     // TODO 3
     // Create cannons
     // You must decide the wall you want the cannon on, the position on the wall, and the time between shots in milliseconds
