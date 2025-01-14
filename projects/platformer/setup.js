@@ -97,7 +97,7 @@ var collectableList = {
   kennedi: { image: "images/collectables/kennedi-head.png" },
   max: { image: "images/collectables/max-head.png" },
   steve: { image: "images/collectables/steve-head.png" },  
-  i : { image: "images/collectables/128i.png"},
+  i : { image: "images/collectables/128i.png"}, //bottom down is the cars you collect as you go down, they are all bmws
   M4 : { image: "images/collectables/m2.png"},
   M340i : { image: "images/collectables/m340i.png"},
   M8 : { image: "images/collectables/m8.png"},
