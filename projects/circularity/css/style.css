@@ -1,0 +1,9 @@
+body {
+  background: url("https://elements-resized.envatousercontent.com/elements-video-cover-images/files/3b399303-ba99-4e2b-9a3e-588dc04ec6cb/inline_image_preview.jpg?w=1200&h=630&cf_fit=crop&q=85&format=jpeg&s=17cbee7c99ce2a7545628e03bcf34a0a9d5eb0203ecb11e115a7632da746569c")
+    no-repeat center center fixed;
+  background-color: #cccccc;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

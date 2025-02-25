@@ -22,20 +22,20 @@ var init = function (window) {
     function drawCircle() {
       //new function
       circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
-      physikz.addRandomVelocity(circle, canvas, 10, 10);
+      physikz.addRandomVelocity(circle, canvas, 50, 100); //the 10, 10 at the end is to enlarge the speed of the circles in x, y
       view.addChild(circle);
       circles.push(circle);
     }
 
     // TODO 3 / 7 : Call the drawCircle() function
     /*
-    drawCircle(); //calling the new function
+    drawCircle(); //calling the new function (Obsolete)
     drawCircle(); //calling the new function
     drawCircle(); //calling the new function
     drawCircle(); //calling the new function
     drawCircle(); //calling the new function
     */
-    for(var i = 0; i < 100; i++) {
+    for(var i = 0; i < 100; i++) { //Initializing the var under for at 0, and it is setting a max amount of circles of 100. The i++ is changing the created var each time it runs to add one.
         drawCircle(circles[i]);
     }
 
@@ -51,7 +51,7 @@ var init = function (window) {
     function update() {
       // TODO 4 : Update the circle's position //
       /*
-      physikz.updatePosition(circles[0]);
+      physikz.updatePosition(circles[0]); (all obsolete)
       physikz.updatePosition(circles[1]);
       physikz.updatePosition(circles[2]);
       physikz.updatePosition(circles[3]);
