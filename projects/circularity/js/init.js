@@ -35,8 +35,9 @@ var init = function (window) {
     drawCircle(); //calling the new function
     drawCircle(); //calling the new function
     */
-    for(var i = 0; i < 100; i++) { //Initializing the var under for at 0, and it is setting a max amount of circles of 100. The i++ is changing the created var each time it runs to add one.
-        drawCircle(circles[i]);
+    for (var i = 0; i < 100; i++) {
+      //Initializing the var under for at 0, and it is setting a max amount of circles of 100. The i++ is changing the created var each time it runs to add one.
+      drawCircle(circles[i]); //calls drawCircle with the paramter of circles[i] which increases every time it runs, fulfilling the loop until 100.
     }
 
     ////////////////////////////////////////////////////////////
@@ -66,11 +67,11 @@ var init = function (window) {
       game.checkCirclePosition(circles[4]);
       */
       // TODO 9 : Iterate over the array
-      for(var i = 0; i <circles.length; i++){ //creates a var i that runs as long as i is less than the length of the array, and increases every time it runs
-        physikz.updatePosition(circles[i])
-        game.checkCirclePosition(circles[i])
+      for (var i = 0; i < circles.length; i++) {
+        //creates a var i that runs as long as i is less than the length of the array, and increases every time it runs
+        physikz.updatePosition(circles[i]); //calling this function
+        game.checkCirclePosition(circles[i]); //calling this function
       }
-
     }
 
     /* 
@@ -79,21 +80,23 @@ var init = function (window) {
         it to the opposite side of the screen.
         */
     game.checkCirclePosition = function (circle) {
-
-      // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
       if (circle.x > canvas.width) {
+        // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
         circle.x = 0;
       }
 
       // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-      if (circle.x < 0) { //checks if the circles go off the left side, which is less than 0, then brings it to right side
+      if (circle.x < 0) {
+        //checks if the circles go off the left side, which is less than 0, then brings it to right side
         circle.x = canvas.width;
       }
-      if (circle.y  > canvas.height) { //checking what the length of the canvas is and bringing the circle back to 0
+      if (circle.y > canvas.height) {
+        //checking what the length of the canvas is and bringing the circle back to 0
         circle.y = 0;
       }
-      if (circle.y < 0) { //If the height of the circle goes below 0, it brings it back to the top
-        circle.y = canvas.height; 
+      if (circle.y < 0) {
+        //If the height of the circle goes below 0, it brings it back to the top
+        circle.y = canvas.height;
       }
       // YOUR TODO 6 CODE ENDS HERE //////////////////////////
     };
