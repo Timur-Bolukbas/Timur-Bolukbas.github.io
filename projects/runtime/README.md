@@ -178,9 +178,6 @@ Start by creating a shared document on Google Drive. Write down notes for your i
 >
 > </details>
 
-
-
-
 ## TODO 2 : Create Your Own Background
 
 You are free to customize the background however you wish, but you should at least make one prominent feature and one many-component feature (see the stars below). If you don't want to customize the background, then you can simply add a moon and stars as described below.
@@ -221,18 +218,15 @@ background.addChild(circle);
 
 - **2c)** **CODE:** Try changing the above code to make the result look more like actual stars. You'll want to draw something other than circles to do that, so check the **Drawing With Create.js** section above if you haven't already.
 
-
-
-
 ## TODO 3 : Animate the Background
 
-><details> <summary> Click to see important animation information </summary>
+> <details> <summary> Click to see important animation information </summary>
 >
->If you look in the upper left-hand corner of the game, you will see something like "57 fps". That means the game is running at 57 frames-per-second. Each "frame" is one drawing of our game and so we are redrawing the game 57 times every second. By making slight changes to what we draw over time we can give the illusion of motion.
+> If you look in the upper left-hand corner of the game, you will see something like "57 fps". That means the game is running at 57 frames-per-second. Each "frame" is one drawing of our game and so we are redrawing the game 57 times every second. By making slight changes to what we draw over time we can give the illusion of motion.
 >
->In `background.js`, the `render()` function sets up our scene and the `update()` function is called once per frame. Whatever changes we make to the scene are drawn on the next frame.
+> In `background.js`, the `render()` function sets up our scene and the `update()` function is called once per frame. Whatever changes we make to the scene are drawn on the next frame.
 >
-></details>
+> </details>
 
 <hr>
 
@@ -291,9 +285,6 @@ background.addChild(circle);
 
   > **TESTING:**
   > The tree should now be moving to the left
-
-
-
 
 ## TODO 4 : Creating a Parallax Effect
 
@@ -377,9 +368,6 @@ Parallax is a technique in animation for giving the illusion of depth. When you 
   > **TESTING:**
   > At this point, the buildings should be moving to the left, and they should be going at a different speed than the tree.
 
-
-
-
 ## TODO 5 : Create Your First Obstacle
 
 You've created a rad background and are now ready to move on to gameplay. You'll be coding up and designing some game elements which Halle can interact with. The game manager provides an API for creating objects which move around the screen and can be run into, jumped over, or shot with Halle's gun.
@@ -459,9 +447,6 @@ An obstacle is the simplest element in our game. It moves at a fixed speed towar
   > 1. In `init.js`, change the `debugHalleHitZones` variable to false.
   > 2. In `js/runLevels.js` pass `false` to the method `game.setDebugMode()`
 
-
-
-
 ## TODO 6 : Make Many Obstacles
 
 Now that we know the sequence to make a single sawblade, let's make more!
@@ -531,9 +516,6 @@ Rather than copy-pasting the 10 lines of code each time we want another sawblade
 
 - **6b)** Make sure that at this point you have all of your sawBlade code confined to your `createSawBlade` function. If you copy-pasted the code into the function, please delete the original code at this point.
 
-
-
-
 ## TODO 7 : Enemies!
 
 Obstacles are only one kind of thing you might find in a game. In most games, you have enemies you have to avoid or shoot as well as different items which you can collect to increase your score or give you powers. These are slightly more complex than obstacles, but you're ready to do them now.
@@ -569,9 +551,6 @@ Obstacles are only one kind of thing you might find in a game. In most games, yo
   > <img src="img/readme/redSquare.png">
 
 > **CHALLENGE:** Customize how your enemy looks. Try making it bigger or drawing some other shapes.
-
-
-
 
 ## TODO 8 : Enemy Properties
 
@@ -611,9 +590,6 @@ The variable `enemy` is an object created by `createGameItem()` which has a numb
   - `shrink()` will cause the item to decrease in size out of existence
   - `flyTo(x,y)` will cause the item to quickly move to a place on screen defined by `x` and `y`
 
-
-
-
 ## TODO 9 : Enemy Function
 
 **CODE:** You now should know enough to make your own enemy. To get started, take all of the code you wrote in TODOs 7 & 8 and move it into a new function called `createEnemy`
@@ -644,9 +620,6 @@ createEnemy(1200, groundY - 50);
 
 Once you have completed this step, you will have working enemies for your game.
 
-
-
-
 ## TODO 10 : Design A Reward
 
 Now that we have Obstacles and Enemies, we need a reward for HalleBot to get!
@@ -658,9 +631,6 @@ Now that we have Obstacles and Enemies, we need a reward for HalleBot to get!
 
 Please note that the `createReward` function will be more like the `createEnemy` function than either of your "createObstacle" functions.
 
-
-
-
 ## TODO 11 : Add an End-Of-Level Marker
 
 Now it's time to add one last object to the game. This is the end-of-level marker. There should only be one per level, and it should be at the end of each level.
@@ -670,9 +640,6 @@ Now it's time to add one last object to the game. This is the end-of-level marke
 - When HalleBot collides with it or shoots it, then the level should transition to the next level. To do so, you need to call the `startLevel()` function in both the `onProjectileCollision` and `onPlayerCollision` function methods.
 
 Please make sure that the marker cannot be missed by HalleBot. You will also want to make sure that if you shoot it, there is nothing else on the screen at the time, as moving on to the next level does NOT remove existing objects from the current level.
-
-
-
 
 ## TODO 12 : Use Level Data to Create Obstacles
 
@@ -732,9 +699,6 @@ var levelData = [
 
   **CODE:** You can add more levels to the game as well. Notice how each level is an object in the `levelData` array. So, you can make another object (or copy/paste an existing one) at the end of the array to make more levels! **You must make at least 1 more level**, but you can make more if you want as well.
 
-
-
-
 ## TODO 13 : Loop Over Data
 
 Now that you have a lot of level data, you need to make your program actually use that data to build the levels.
@@ -747,7 +711,7 @@ Now that you have a lot of level data, you need to make your program actually us
 
   **READ:** `levelData` is an array of objects, and there is a variable called `currentLevel` that keeps track of which level you are currently on.
 
-  **CODE:**  Create a new variable called `level`. Then, store the corresponding level object inside of that variable. You can do this using the `levelData` array, bracket notation, and `currentLevel` as the index for the bracket notation.
+  **CODE:** Create a new variable called `level`. Then, store the corresponding level object inside of that variable. You can do this using the `levelData` array, bracket notation, and `currentLevel` as the index for the bracket notation.
 
 - **13b)** Get the array from the `level` object.
 
@@ -820,9 +784,6 @@ Now that you have a lot of level data, you need to make your program actually us
   Now that your loop handles iteration over `levelData.gameItems` and also calling your object creation functions, you don't need the other function calls in your code.
 
   **CODE:** Remove all function calls (except the ones in your for loop) to `createSawblade`, `createReward`, etc.
-
-
-
 
 ## TODO 14 : Go Live
 
