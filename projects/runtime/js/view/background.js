@@ -47,8 +47,8 @@ var background = function (window) {
       // TODO 2: - Add a moon and starfield
      
       var moon = draw.bitmap("img/moon.png"); //creates a bitmpa object using the moon image and stores it in the moon variable
-      moon.x = canvas.width - 600; // sets the moon x position
-      moon.y = canvas.height - 600; //sets the moons y position
+      moon.x = canvas.width /2; // sets the moon x position
+      moon.y = canvas.height - canvasHeight / 1.055; //sets the moons y position
       moon.scaleX = 1.0; //scales the moons width
       moon.scaleY = 1.0; //scales the moons height
       background.addChild(moon); //add the moon to the background container
@@ -61,8 +61,8 @@ var background = function (window) {
       }
 
       // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-      for (var i = 0; i < 5; i++) {
-        var buildingColors = ["red", "blue", "yellow", "purple", "green", "pink"]
+      for (var i = 0; i < 10; i++) {
+        var buildingColors = ["red", "blue", "yellow", "purple", "green", "pink", "red", "blue", "yellow", "purple", "green", "pink"]
         var buildingHeight = 300 * Math.random(); //assign 300 to the buildingHeight var
         var building = draw.rect(75, buildingHeight, buildingColors[i], "Black", 1); //draws a rectangle with 75 width, buildingHeight is height, lightGray is the fill color, Black is the outline color
         building.x = 200 * i; //multiply 200 by the current i value and store it as the x pos for the building
@@ -93,10 +93,10 @@ var background = function (window) {
 
       // TODO 4: Part 2 - Parallax
       for(var i = 0; i < buildings.length; i++) {
-        var building = buildings[i];
-        building.x -= 1;
-        if (building.x < 0) {
-          building.x = canvasWidth;
+        var building = buildings[i]; //the individual index of the buildings array stored in a var
+        building.x -= 1; //subtracts 1 from the x pos
+        if (building.x < -100) {
+          building.x = canvasWidth; //checks if the x pos of the building is less than -100, and if it is, then it resets the building
         }
       }
     } // end of update function - DO NOT DELETE
