@@ -30,11 +30,8 @@ var runLevels = function (window) {
       obstacleImage.x = -25; //position the image in the hot zones x value by moving it up to the left 25 units
       obstacleImage.y = -25; //position the image on the hit zone y value by moving it up 25 units
     }
-    createObstacles(400,groundY, 25, 10);
-    createObstacles(800,groundY, 25, 10); 
-    createObstacles(1200,groundY, 25, 10);
 
-    function createEnemy(x, y, speed) {
+    function createEnemy(x, y, speed, health, score) {
       var enemy = game.createGameItem("enemy", 25); //CREATES YOUR ENEMY GAME ITEM AND ADDS IT TO THE GAME
       var redSquare = draw.rect(50, 50, "red"); //creates a red square and stores it in the var redSquare
       redSquare.x = -25; //offsets image from the hitzone by -25 horizontally
@@ -46,27 +43,79 @@ var runLevels = function (window) {
       enemy.velocityX -= speed; //controlling how fast the enemy moves on the x axis
       enemy.rotationalVelocity = 5;
       enemy.onPlayerCollision = function () {
-        game.changeIntegrity(-10)
+        game.changeIntegrity(health)
       };
       enemy.onProjectileCollision = function (){
-        game.increaseScore(100); //increases score by 100 on projectile collision
+        game.increaseScore(10); //increases score by 100 on projectile collision
         enemy.fadeOut(); //enemy fades out on projectile collision
         //enemy.shrink()
         //enemy.flyTo(x, y)
     };
   };
 
+  function createReward(x, y, speed, health, score) {
+      var reward = game.createGameItem("reward", 25); //CREATES YOUR reward GAME ITEM AND ADDS IT TO THE GAME
+      var redSquare = draw.rect(50, 50, "blue"); //creates a red square and stores it in the var redSquare
+      redSquare.x = -25; //offsets image from the hitzone by -25 horizontally
+      redSquare.y = -25; //offsets image from the hitzone by -25 vertically
+      reward.addChild(redSquare); //adds the red square as a child to our reward var
+      reward.x = x; //x pos of reward
+      reward.y = y; //y pos of reward
+      game.addGameItem(reward); //adds the reward to the game
+      reward.velocityX -= speed; //controlling how fast the reward moves on the x axis
+      reward.rotationalVelocity = 7;
+      reward.onPlayerCollision = function () {
+        game.changeIntegrity(health)
+      };
+      reward.onProjectileCollision = function (){
+        game.increaseScore(10); //increases score by 100 on projectile collision
+        reward.fadeOut(); //reward fades out on projectile collision
+        //reward.shrink()
+        //reward.flyTo(x, y)
+    };
+  };
+  function createLevel(x, y, speed) {
+    var level = game.createGameItem("level", 25); //CREATES YOUR level GAME ITEM AND ADDS IT TO THE GAME
+    var redSquare = draw.rect(50, 50, "yellow"); //creates a red square and stores it in the var redSquare
+    redSquare.x = -25; //offsets image from the hitzone by -25 horizontally
+    redSquare.y = -25; //offsets image from the hitzone by -25 vertically
+    level.addChild(redSquare); //adds the red square as a child to our level var
+    level.x = x; //x pos of level
+    level.y = y; //y pos of level
+    game.addGameItem(level); //adds the level to the game
+    level.velocityX -= speed; //controlling how fast the level moves on the x axis
+    level.rotationalVelocity = 7;
+    level.onPlayerCollision = function () {
+      reward.shrink();
+      startLevel();
+    };
+  };
+
+  createLevel(1200, groundY - 50, 3);
+
   createEnemy(400, groundY - 50, 3);
   createEnemy(800, groundY - 50, 10);
   createEnemy(1200, groundY - 50, 50);
+
+  createReward(600, groundY - 50, 2, 3);
+  createReward(900, groundY - 50, 3, 10);
+  createReward(1200, groundY - 50, 4, 50);
     // BEGIN EDITING YOUR CODE HERE
 
     
 
     function startLevel() {
       // TODO 13 goes below here
+      var level = levelData[currentLevel] // fetches the currentLevel from the levelData array and stores it in var level
+      var levelObjects = level.gameItems //retrieve the array of gameItems and stores it in levelObjects
 
+      for(i = 0; i < levelObjects.length; i++) {
+        var element = levelObjects[i];
 
+        if(element.type === "sawblade"){
+          createObstacles(element.x, element.y, element.hitSize, element.damage);
+        }
+      }
 
       //////////////////////////////////////////////
       // DO NOT EDIT CODE BELOW HERE
