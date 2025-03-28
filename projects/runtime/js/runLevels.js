@@ -18,13 +18,13 @@ var runLevels = function (window) {
 
     // TODOs 5 through 11 go here
     function createObstacles (x, y, hitSize, damage) {
-      var hitZoneSize = hitSize;
-      var damageFromObstacle = damage;
-      var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
-      obstacleHitZone.x = x;
-      obstacleHitZone.y = y;
-      game.addGameItem(obstacleHitZone);
-      var obstacleImage = draw.bitmap("img/sawblade.png")
+      var hitZoneSize = hitSize; //define the size of the hitzone and assign it to a variable
+      var damageFromObstacle = damage; // define the damage the obstacle causes and assigns it to a var
+      var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates the obstacle hit zone using the size and damage as paramters and assigns it as a var
+      obstacleHitZone.x = x; //sets x coordinate of sawblade
+      obstacleHitZone.y = y; // sets y coords of sawblade
+      game.addGameItem(obstacleHitZone); //adds sawblade hit zone to the game
+      var obstacleImage = draw.bitmap("img/sawblade.png") //draws the sawblade image and stores it in obstacleImage
       obstacleHitZone.rotationalVelocity = 10; //sets rotational velocity of the enemy
       obstacleHitZone.addChild(obstacleImage); //draws the sawblade image and stores it in the obstacleImage
       obstacleImage.x = -25; //position the image in the hot zones x value by moving it up to the left 25 units
@@ -91,15 +91,6 @@ var runLevels = function (window) {
     };
   };
 
-  createLevel(1200, groundY - 50, 3);
-
-  createEnemy(400, groundY - 50, 3);
-  createEnemy(800, groundY - 50, 10);
-  createEnemy(1200, groundY - 50, 50);
-
-  createReward(600, groundY - 50, 2, 3);
-  createReward(900, groundY - 50, 3, 10);
-  createReward(1200, groundY - 50, 4, 50);
     // BEGIN EDITING YOUR CODE HERE
 
     
@@ -112,8 +103,17 @@ var runLevels = function (window) {
       for(i = 0; i < levelObjects.length; i++) {
         var element = levelObjects[i];
 
-        if(element.type === "sawblade"){
-          createObstacles(element.x, element.y, element.hitSize, element.damage);
+        if(element.type === "sawblade"){ // checks the type key:value of the gameItems objects
+          createObstacles(element.x, element.y, element.hitSize, element.damage); //if the condition is true, it will call the relevant function
+        }
+        if(element.type === "enemy"){ // checks the type key:value of the gameItems objects
+          createEnemy(element.x, element.y, element.speed, element.health, element.score); //if the condition is true, it will call the relevant function
+        }
+        if(element.type === "reward"){ // checks the type key:value of the gameItems objects
+          createReward(element.x, element.y, element.speed, element.health); //if the condition is true, it will call the relevant function
+        }
+        if(element.type === "level"){ // checks the type key:value of the gameItems objects
+          createLevel(element.x, element.y, element.speed); //if the condition is true, it will call the relevant function
         }
       }
 
