@@ -31,26 +31,32 @@ var runLevels = function (window) {
       obstacleImage.y = -25; //position the image on the hit zone y value by moving it up 25 units
     }
 
-    function createEnemy(x, y, speed, health, score) {
-      var enemy = game.createGameItem("enemy", 25); //CREATES YOUR ENEMY GAME ITEM AND ADDS IT TO THE GAME
-      var redSquare = draw.rect(50, 50, "red"); //creates a red square and stores it in the var redSquare
-      redSquare.x = -25; //offsets image from the hitzone by -25 horizontally
-      redSquare.y = -25; //offsets image from the hitzone by -25 vertically
-      enemy.addChild(redSquare); //adds the red square as a child to our enemy var
-      enemy.x = x; //x pos of enemy
-      enemy.y = y; //y pos of enemy
-      game.addGameItem(enemy); //adds the enemy to the game
-      enemy.velocityX -= speed; //controlling how fast the enemy moves on the x axis
-      enemy.rotationalVelocity = 5;
+    function createEnemy(x, y, speed, health, score, image, scale) {
+      var enemy = game.createGameItem("enemy", 25); // Creates the enemy game item
+      var enemyImage = draw.bitmap(image); // Creates the enemy image
+      scale = scale || 1; // Default scale to 1 if not provided
+  
+      // Apply scaling to the enemy image
+      enemyImage.scaleX = scale; // Scale the width
+      enemyImage.scaleY = scale; // Scale the height
+  
+      enemyImage.x = -25 * scale; // Offset the image horizontally, adjusted for scale
+      enemyImage.y = -25 * scale; // Offset the image vertically, adjusted for scale
+      enemy.addChild(enemyImage); // Adds the enemy image as a child to the enemy game item
+  
+      enemy.x = x; // X position of the enemy
+      enemy.y = y; // Y position of the enemy
+      game.addGameItem(enemy); // Adds the enemy to the game
+      enemy.velocityX -= speed; // Controls how fast the enemy moves on the x-axis
+  
       enemy.onPlayerCollision = function () {
-        game.changeIntegrity(health)
+          game.changeIntegrity(health); // Reduces player health on collision
       };
-      enemy.onProjectileCollision = function (){
-        game.increaseScore(10); //increases score by 100 on projectile collision
-        enemy.fadeOut(); //enemy fades out on projectile collision
-        //enemy.shrink()
-        //enemy.flyTo(x, y)
-    };
+  
+      enemy.onProjectileCollision = function () {
+          game.increaseScore(score); // Increases score on projectile collision
+          enemy.fadeOut(); // Enemy fades out on projectile collision
+      };
   };
 
   function createReward(x, y, speed, health, score) {
@@ -104,10 +110,10 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if(element.type === "sawblade"){ // checks the type key:value of the gameItems objects
-          createObstacles(element.x, element.y, element.hitSize, element.damage); //if the condition is true, it will call the relevant function
+          createObstacles(element.x, element.y, element.hitSize, element.damage, element.image); //if the condition is true, it will call the relevant function
         }
         if(element.type === "enemy"){ // checks the type key:value of the gameItems objects
-          createEnemy(element.x, element.y, element.speed, element.health, element.score); //if the condition is true, it will call the relevant function
+          createEnemy(element.x, element.y, element.speed, element.health, element.score, element.image, element.scale); //if the condition is true, it will call the relevant function
         }
         if(element.type === "reward"){ // checks the type key:value of the gameItems objects
           createReward(element.x, element.y, element.speed, element.health); //if the condition is true, it will call the relevant function
