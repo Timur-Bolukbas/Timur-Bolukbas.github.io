@@ -14,22 +14,30 @@ var runLevels = function (window) {
     var levelData = window.opspark.levelData;
 
     // set this to true or false depending on if you want to see hitzones
-    game.setDebugMode(true);
+    game.setDebugMode(false);
 
     // TODOs 5 through 11 go here
-    function createObstacles (x, y, hitSize, damage) {
-      var hitZoneSize = hitSize; //define the size of the hitzone and assign it to a variable
-      var damageFromObstacle = damage; // define the damage the obstacle causes and assigns it to a var
-      var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates the obstacle hit zone using the size and damage as paramters and assigns it as a var
-      obstacleHitZone.x = x; //sets x coordinate of sawblade
-      obstacleHitZone.y = y; // sets y coords of sawblade
-      game.addGameItem(obstacleHitZone); //adds sawblade hit zone to the game
-      var obstacleImage = draw.bitmap("img/sawblade.png") //draws the sawblade image and stores it in obstacleImage
-      obstacleHitZone.rotationalVelocity = 10; //sets rotational velocity of the enemy
-      obstacleHitZone.addChild(obstacleImage); //draws the sawblade image and stores it in the obstacleImage
-      obstacleImage.x = -25; //position the image in the hot zones x value by moving it up to the left 25 units
-      obstacleImage.y = -25; //position the image on the hit zone y value by moving it up 25 units
-    }
+    function createObstacles(x, y, hitSize, damage, image, scale, rotationalVelocity) {
+      var hitZoneSize = hitSize; // Define the size of the hitzone and assign it to a variable
+      var damageFromObstacle = damage; // Define the damage the obstacle causes and assign it to a variable
+      var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); // Create the obstacle hit zone using the size and damage as parameters and assign it to a variable
+      obstacleHitZone.x = x; // Set x coordinate of the obstacle
+      obstacleHitZone.y = y; // Set y coordinate of the obstacle
+      game.addGameItem(obstacleHitZone); // Add the obstacle hit zone to the game
+  
+      var obstacleImage = draw.bitmap(image); // Draw the obstacle image and store it in obstacleImage
+    
+  
+      // Apply scaling to the obstacle image
+      obstacleImage.scaleX = scale; // Scale the width
+      obstacleImage.scaleY = scale; // Scale the height
+  
+      obstacleImage.x = -25 * scale; // Offset the image horizontally, adjusted for scale
+      obstacleImage.y = -25 * scale; // Offset the image vertically, adjusted for scale
+      obstacleHitZone.addChild(obstacleImage); // Add the obstacle image as a child to the obstacle hit zone
+  
+      obstacleHitZone.rotationalVelocity = rotationalVelocity; // Set rotational velocity of the obstacle
+  }
 
     function createEnemy(x, y, speed, health, score, image, scale) {
       var enemy = game.createGameItem("enemy", 25); // Creates the enemy game item
@@ -40,8 +48,8 @@ var runLevels = function (window) {
       enemyImage.scaleX = scale; // Scale the width
       enemyImage.scaleY = scale; // Scale the height
   
-      enemyImage.x = -25 * scale; // Offset the image horizontally, adjusted for scale
-      enemyImage.y = -25 * scale; // Offset the image vertically, adjusted for scale
+      enemyImage.x = -50 * scale; // Offset the image horizontally, adjusted for scale
+      enemyImage.y = -59 * scale; // Offset the image vertically, adjusted for scale
       enemy.addChild(enemyImage); // Adds the enemy image as a child to the enemy game item
   
       enemy.x = x; // X position of the enemy
@@ -92,7 +100,7 @@ var runLevels = function (window) {
     level.velocityX -= speed; //controlling how fast the level moves on the x axis
     level.rotationalVelocity = 7;
     level.onPlayerCollision = function () {
-      reward.shrink();
+      level.shrink();
       startLevel();
     };
   };
@@ -110,7 +118,7 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if(element.type === "sawblade"){ // checks the type key:value of the gameItems objects
-          createObstacles(element.x, element.y, element.hitSize, element.damage, element.image); //if the condition is true, it will call the relevant function
+          createObstacles(element.x, element.y, element.hitSize, element.damage, element.image, element.scale, element.rotationalVelocity); //if the condition is true, it will call the relevant function
         }
         if(element.type === "enemy"){ // checks the type key:value of the gameItems objects
           createEnemy(element.x, element.y, element.speed, element.health, element.score, element.image, element.scale); //if the condition is true, it will call the relevant function

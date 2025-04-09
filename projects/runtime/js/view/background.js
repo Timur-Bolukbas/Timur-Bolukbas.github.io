@@ -61,14 +61,14 @@ var background = function (window) {
       }
 
       // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-      for (var i = 0; i < 10; i++) {
-        var buildingColors = ["red", "blue", "yellow", "purple", "green", "pink", "red", "blue", "yellow", "purple", "green", "pink"]
-        var buildingHeight = 300 * Math.random(); //assign 300 to the buildingHeight var
-        var building = draw.rect(75, buildingHeight, buildingColors[i], "Black", 1); //draws a rectangle with 75 width, buildingHeight is height, lightGray is the fill color, Black is the outline color
-        building.x = 200 * i; //multiply 200 by the current i value and store it as the x pos for the building
-        building.y = groundY - buildingHeight; //takes the grounY, subtracts buildingHeight and stores it as the y value
-        background.addChild(building); //adds our building to the background container
-        buildings.push(building); //add the bulding to the buildings array for further manipulation
+      for (var i = 0; i < 5; i++) {
+        var walkImage = draw.bitmap("img/walk.png");
+        walkImage.x = 300 * i; // Space out the images horizontally
+        walkImage.y = groundY - 160; // Position above the ground
+        walkImage.scaleX = 0.5; // Scale down the image
+        walkImage.scaleY = 0.5; // Scale down the image
+        background.addChild(walkImage);
+        buildings.push(walkImage); // Add to the buildings array for animation
       }
       // TODO 3: Part 1 - Add a tree
       tree = draw.bitmap("img/tree.png"); // creates a bitmap for the tree image, stores it in var tree
