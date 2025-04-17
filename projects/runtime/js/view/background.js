@@ -41,16 +41,17 @@ var background = function (window) {
       // this currently fills the background with an obnoxious yellow;
       // you should modify both the height and color to suit your game
      
-      var backgroundFill = draw.rect(canvasWidth, groundY, "orange"); //draws a rectangle and stores it in the var backgroundFill
+      var backgroundFill = draw.rect(canvasWidth, groundY, "yellow"); //draws a rectangle and stores it in the var backgroundFill
       background.addChild(backgroundFill); //adds the background rectangle to the background container to make it visible
 
       // TODO 2: - Add a moon and starfield
      
-      var moon = draw.bitmap("img/moon.png"); //creates a bitmpa object using the moon image and stores it in the moon variable
+
+      var moon = draw.bitmap("img/north.png"); //creates a bitmpa object using the moon image and stores it in the moon variable
       moon.x = canvas.width /2; // sets the moon x position
       moon.y = canvas.height - canvasHeight / 1.055; //sets the moons y position
-      moon.scaleX = 1.0; //scales the moons width
-      moon.scaleY = 1.0; //scales the moons height
+      moon.scaleX = 1.5; //scales the moons width
+      moon.scaleY = 1.5; //scales the moons height
       background.addChild(moon); //add the moon to the background container
 
       for (var i = 0; i < 100; i++) {
@@ -71,10 +72,12 @@ var background = function (window) {
         buildings.push(walkImage); // Add to the buildings array for animation
       }
       // TODO 3: Part 1 - Add a tree
-      tree = draw.bitmap("img/tree.png"); // creates a bitmap for the tree image, stores it in var tree
-      tree.x = canvasWidth; //place the tree off-screen to the right
-      tree.y = groundY - 225; //places the tree above the ground
-      background.addChild(tree); //add the tree to the background container
+      
+      //tree = draw.bitmap("img/tree.png"); // creates a bitmap for the tree image, stores it in var tree
+      //tree.x = canvasWidth; //place the tree off-screen to the right
+      //tree.y = groundY - 225; //places the tree above the ground
+      //background.addChild(tree); //add the tree to the background container
+      
     } // end of render function - DO NOT DELETE
 
     // Perform background animation
@@ -86,10 +89,11 @@ var background = function (window) {
       var groundY = ground.y;
 
       // TODO 3: Part 2 - Move the tree!
-      tree.x -= 3; //moves the tree to the left by subracting 3 from its current x pos
+      /* tree.x -= 3; //moves the tree to the left by subracting 3 from its current x pos
       if (tree.x < -200) {
           tree.x = canvasWidth - 100;
       }
+      */
 
       // TODO 4: Part 2 - Parallax
       for(var i = 0; i < buildings.length; i++) {
@@ -98,8 +102,10 @@ var background = function (window) {
         if (building.x < -100) {
           building.x = canvasWidth; //checks if the x pos of the building is less than -100, and if it is, then it resets the building
         }
-      }
+      
+      } 
     } // end of update function - DO NOT DELETE
+    
 
     /* Make a createjs Container for the background and let it know about the render and upate functions*/
     background = new createjs.Container();
